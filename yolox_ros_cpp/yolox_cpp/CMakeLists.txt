@@ -18,6 +18,7 @@ option(YOLOX_USE_OPENVINO    "Use OpenVINO"  OFF)
 option(YOLOX_USE_TENSORRT    "Use TensorRT"  OFF)
 option(YOLOX_USE_ONNXRUNTIME "Use ONNXRuntime"  OFF)
 option(YOLOX_USE_TFLITE      "Use tflite"  OFF)
+option(YOLOX_USE_HAILORT     "Use Hailort"  OFF)
 option(JETSON                "Use Jetson"  OFF)
 
 if(JETSON)
@@ -25,7 +26,7 @@ if(JETSON)
   set(YOLOX_USE_TENSORRT ON)
 endif()
 
-if(NOT YOLOX_USE_OPENVINO AND NOT YOLOX_USE_TENSORRT AND NOT YOLOX_USE_ONNXRUNTIME AND NOT YOLOX_USE_TFLITE)
+if(NOT YOLOX_USE_OPENVINO AND NOT YOLOX_USE_TENSORRT AND NOT YOLOX_USE_ONNXRUNTIME AND NOT YOLOX_USE_TFLITE AND NOT YOLOX_USE_HAILORT)
   message(FATAL_ERROR "YOLOX_USE_OPENVINO, YOLOX_USE_TENSORRT, YOLOX_USE_ONNXRUNTIME, YOLOX_USE_TFLITE must be ON at least one")
   return()
 endif()
@@ -34,6 +35,7 @@ set(ENABLE_OPENVINO OFF)
 set(ENABLE_TENSORRT OFF)
 set(ENABLE_ONNXRUNTIME OFF)
 set(ENABLE_TFLITE OFF)
+set(ENABLE_HAILORT OFF)
 
 if(YOLOX_USE_OPENVINO)
   find_package(OpenVINO REQUIRED)
@@ -75,6 +77,13 @@ if(YOLOX_USE_ONNXRUNTIME)
   set(TARGET_SRC src/yolox_onnxruntime.cpp)
 endif()
 
+# hailort
+if(YOLOX_USE_HAILORT)
+  find_package(HailoRT EXACT REQUIRED)
+  set(ENABLE_HAILORT ON)
+  set(TARGET_SRC src/yolox_hailort.cpp)
+endif()
+
 configure_file(
   "${PROJECT_SOURCE_DIR}/include/yolox_cpp/config.h.in"
   "${PROJECT_SOURCE_DIR}/include/yolox_cpp/config.h"
@@ -100,6 +109,10 @@ if (YOLOX_USE_ONNXRUNTIME)
   target_link_libraries(yolox_cpp onnxruntime)
 endif()
 
+if (YOLOX_USE_HAILORT)
+  target_link_libraries(yolox_cpp HailoRT::libhailort ${OpenCV_LIBS})
+  ament_export_dependencies(HailoRT)
+endif()
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
