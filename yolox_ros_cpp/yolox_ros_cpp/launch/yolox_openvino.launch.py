@@ -97,7 +97,7 @@ def generate_launch_description():
                     'num_classes': LaunchConfiguration('num_classes'),
                     'model_type': 'openvino',
                     'model_version': LaunchConfiguration('model_version'),
-                    'openvino/device': LaunchConfiguration('openvino/device'),
+                    'openvino_device': LaunchConfiguration('openvino/device'),
                     'conf': LaunchConfiguration('conf'),
                     'nms': LaunchConfiguration('nms'),
                     'imshow_isshow': LaunchConfiguration('imshow_isshow'),
