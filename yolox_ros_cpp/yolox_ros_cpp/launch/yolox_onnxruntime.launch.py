@@ -19,6 +19,7 @@ from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
 
+
 def generate_launch_description():
     launch_args = [
         DeclareLaunchArgument(
@@ -144,14 +145,17 @@ def generate_launch_description():
                     'onnxruntime/use_cuda': LaunchConfiguration('onnxruntime/use_cuda'),
                     'onnxruntime/device_id': LaunchConfiguration('onnxruntime/device_id'),
                     'onnxruntime/use_parallel': LaunchConfiguration('onnxruntime/use_parallel'),
-                    'onnxruntime/inter_op_num_threads': LaunchConfiguration('onnxruntime/inter_op_num_threads'),
-                    'onnxruntime/intra_op_num_threads': LaunchConfiguration('onnxruntime/intra_op_num_threads'),
+                    'onnxruntime/inter_op_num_threads':
+                        LaunchConfiguration('onnxruntime/inter_op_num_threads'),
+                    'onnxruntime/intra_op_num_threads':
+                    LaunchConfiguration('onnxruntime/intra_op_num_threads'),
                     'conf': LaunchConfiguration('conf'),
                     'nms': LaunchConfiguration('nms'),
                     'imshow_isshow': LaunchConfiguration('imshow_isshow'),
                     'src_image_topic_name': LaunchConfiguration('src_image_topic_name'),
                     'publish_image_topic_name': LaunchConfiguration('publish_image_topic_name'),
-                    'publish_boundingbox_topic_name': LaunchConfiguration('publish_boundingbox_topic_name'),
+                    'publish_boundingbox_topic_name':
+                        LaunchConfiguration('publish_boundingbox_topic_name'),
                     'publish_resized_image': LaunchConfiguration('publish_resized_image'),
                     'use_bbox_ex_msgs': LaunchConfiguration('use_bbox_ex_msgs'),
                 }],

@@ -46,7 +46,7 @@ endif()
 
 if(YOLOX_USE_TENSORRT)
   find_package(CUDA REQUIRED)
-  if (NOT CUDA_TOOLKIT_ROOT_DIR)
+  if(NOT CUDA_TOOLKIT_ROOT_DIR)
     set(CUDA_TOOLKIT_ROOT_DIR /usr/local/cuda)
   endif()
   find_path(TENSORRT_INCLUDE_DIR NvInfer.h
@@ -88,7 +88,7 @@ ament_target_dependencies(yolox_cpp ${TARGET_DPENDENCIES})
 ament_export_dependencies(${TARGET_DPENDENCIES})
 target_link_libraries(yolox_cpp ${TARGET_LIBS})
 
-if (YOLOX_USE_TFLITE)
+if(YOLOX_USE_TFLITE)
   ament_export_include_directories(${INCLUDES})
   install(DIRECTORY ${TFLITE_LIB_PATH}/ DESTINATION lib)
 endif()
