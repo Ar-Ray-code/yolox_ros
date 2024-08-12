@@ -39,5 +39,5 @@ jobs:
         uses: ros-tooling/action-ros-ci@v0.3
         with:
           target-ros2-distro: ${{ matrix.ros_distribution }}
-          skip-tests: true
+          skip-tests: false
           extra-cmake-args: "-DYOLOX_USE_OPENVINO=True"
