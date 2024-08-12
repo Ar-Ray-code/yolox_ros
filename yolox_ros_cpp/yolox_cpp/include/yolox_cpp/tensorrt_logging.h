@@ -93,7 +93,7 @@ private:
     std::ostream & mOutput;
     std::string mPrefix;
     bool mShouldLog {};
-  }; // class LogStreamConsumerBuffer
+  };
 
 
   class LogStreamConsumerBase
@@ -105,7 +105,7 @@ public:
 
 protected:
     LogStreamConsumerBuffer mBuffer;
-  }; // class LogStreamConsumerBase
+  };
 
   class LogStreamConsumer: protected LogStreamConsumerBase, public std::ostream
   {
@@ -161,7 +161,7 @@ private:
 
     bool mShouldLog;
     Severity mSeverity;
-  }; // class LogStreamConsumer
+  };
 
 
   class Logger: public nvinfer1::ILogger
@@ -324,7 +324,7 @@ private:
     }
 
     Severity mReportableSeverity;
-  }; // class Logger
+  };
 
   inline LogStreamConsumer LOG_VERBOSE(const Logger & logger)
   {

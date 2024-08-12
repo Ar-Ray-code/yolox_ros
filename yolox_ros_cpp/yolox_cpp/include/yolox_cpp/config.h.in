@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef YOLOX_CPP__CONFIG_H_IN_
-#define YOLOX_CPP__CONFIG_H_IN_
+#ifndef YOLOX_CPP__CONFIG_H_
+#define YOLOX_CPP__CONFIG_H_
 
 #cmakedefine ENABLE_OPENVINO
 #cmakedefine ENABLE_TENSORRT
 #cmakedefine ENABLE_ONNXRUNTIME
 #cmakedefine ENABLE_TFLITE
 
-#endif // YOLOX_CPP__CONFIG_H_IN_
+#endif  // YOLOX_CPP__CONFIG_H_
